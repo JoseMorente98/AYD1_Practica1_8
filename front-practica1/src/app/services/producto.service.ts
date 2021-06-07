@@ -39,5 +39,12 @@ export class ProductosService {
     )
   }
 
-
+  //READ
+  public read(): Observable<any>{
+    let url = `${this.basePath}producto`;
+    return this.http.get(url, this.httpOptions)
+    .pipe(
+      catchError(this.handleError)
+    )
+  }
 }
