@@ -1,0 +1,17 @@
+<mat-toolbar class="bar">
+    <div class="left tittle">Grupo: Tytus DB</div>
+    <div class="center">
+      <img class="imagen" src="assets/logo3.png" alt="...">
+   </div>
+   <div class="right">
+     <button mat-icon-button aria-label="Example icon-button with menu icon" [matMenuTriggerFor]="menu">
+          <mat-icon>menu</mat-icon>
+     </button>	 
+   </div>
+</mat-toolbar >
+
+<mat-menu class="menu" #menu="matMenu" >
+  <button mat-menu-item [routerLink]="['/dashboard']"><mat-icon>home</mat-icon>Home</button>
+  <mat-divider></mat-divider>
+  <button mat-menu-item [routerLink]="['/manager']"><mat-icon>import_contacts</mat-icon>CRUD</button>
+</mat-menu>
