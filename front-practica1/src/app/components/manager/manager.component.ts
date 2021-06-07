@@ -39,14 +39,14 @@ export class ManagerComponent implements OnInit {
 	) { }
 
 	// Aqui van los nombres de las columnas 
-	columnas: string[] = ['ID', 'Nombre', 'Descripción', 'Precio', 'Costo', 'Cantidad', 'Imagen'];
+	columnas: string[] = ['id', 'nombre', 'descripcion', 'precio', 'costo', 'cantidad', 'imagen'];
 
 	// Aqui van los nombres de los encabezados de la tabla basicamente es el mismo de columnas pero para tener un mejor orden  
-	headers: string[] = ['ID', 'Nombre', 'Descripción', 'Precio', 'Costo', 'Cantidad', 'Imagen'];
+	headers: string[] = ['id', 'nombre', 'descripcion', 'precio', 'costo', 'cantidad', 'imagen'];
 
 	// Aqui van los datos de la tabla basicamente solo hay que igualar esto al json que devulve la peticion y ya quedaria
 	// datos = [{id:1}, {id:2}, {id:3}] este seria el formato
-	datos = [{ Ejemplo: "DatoEjemplo1" }, { Ejemplo: "DatoEjemplo2" }];
+	datos = [];
 
 	@ViewChild(MatTable) tabla1: MatTable<any>;
 
@@ -56,7 +56,7 @@ export class ManagerComponent implements OnInit {
 
 	getProducts() {
 		this.productoService.read().subscribe((res: any) => {
-			console.log
+			console.log(res);
 			this.datos = res;
 		}, (error) => {
 			console.log("Ha ocurrido un error.")
