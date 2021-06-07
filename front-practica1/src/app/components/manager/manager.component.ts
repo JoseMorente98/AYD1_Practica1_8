@@ -51,10 +51,12 @@ export class ManagerComponent implements OnInit {
 	@ViewChild(MatTable) tabla1: MatTable<any>;
 
 	ngOnInit(): void {
+		this.getProducts();
 	}
 
 	getProducts() {
 		this.productoService.read().subscribe((res: any) => {
+			console.log
 			this.datos = res;
 		}, (error) => {
 			console.log("Ha ocurrido un error.")
