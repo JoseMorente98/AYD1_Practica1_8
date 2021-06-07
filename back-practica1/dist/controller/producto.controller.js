@@ -32,9 +32,33 @@ var ProductoController = /** @class */ (function () {
                 }
             });
         };
+
+        this.delete = function (req, res) {
+            var id = req.params.id;
+            var query = "DELETE FROM Producto WHERE id = ?";
+            mysql_1.default.sendQuery(query, [id], function (err, data) {
+                if (err) {
+                    res.status(400).json({
+                        ok: false,
+                        status: 400,
+                        error: err
+                    });
+                }
+                else {
+
+                    res.json({
+                        ok: true,
+                        status: 200
+                    });
+                }
+            });
+        };
+
+
         this.getAll = function (req, res) {
             var query = "\n            SELECT * FROM Producto;\n        ";
             mysql_1.default.getQuery(query, function (err, data) {
+
                 if (err) {
                     res.status(400).json({
                         ok: false,
@@ -44,6 +68,7 @@ var ProductoController = /** @class */ (function () {
                 }
                 else {
                     res.json();
+
                 }
             });
         };
