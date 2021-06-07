@@ -9,4 +9,5 @@ var producto = express_1.Router();
 producto.post('/producto', producto_controller_1.default.getInstance().create);
 producto.get('/producto', producto_controller_1.default.getInstance().getAll);
 producto.delete('/producto/:id', producto_controller_1.default.getInstance().delete);
+producto.get('/search/producto/:nombre', producto_controller_1.default.getInstance().search);
 exports.default = producto;

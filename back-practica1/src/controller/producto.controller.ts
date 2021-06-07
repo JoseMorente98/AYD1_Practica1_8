@@ -62,8 +62,7 @@ export default class ProductoController {
         })
     }
 
-
-    delete = (req: Request, res: Response) => {
+	delete = (req: Request, res: Response) => {
         const id = req.params.id;
         const query = `DELETE FROM Producto WHERE id = ?`;
         
@@ -84,4 +83,23 @@ export default class ProductoController {
             }
         })
     }
+	
+	search = (req: Request, res: Response) => {
+		
+		const nombre = req.params.nombre;
+		const query = `SELECT * FROM Producto WHERE nombre = ?`;
+
+		MySQL.sendQuery(query, [nombre], (err: any, data: Object[]) => {
+            if (err) {
+                res.status(400).json({
+                    ok: false,
+                    status: 400,
+                    error: err
+                });
+            } else {
+                res.json(data);
+            }
+        })	
+		
+	}
 }

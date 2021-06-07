@@ -66,6 +66,22 @@ var ProductoController = /** @class */ (function () {
                 }
             });
         };
+        this.search = function (req, res) {
+            var nombre = req.params.nombre;
+            var query = "SELECT * FROM Producto WHERE nombre = ?";
+            mysql_1.default.sendQuery(query, [nombre], function (err, data) {
+                if (err) {
+                    res.status(400).json({
+                        ok: false,
+                        status: 400,
+                        error: err
+                    });
+                }
+                else {
+                    res.json(data);
+                }
+            });
+        };
     }
     ProductoController.getInstance = function () {
         return this._instance || (this._instance = new this());
