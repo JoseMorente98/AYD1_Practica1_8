@@ -4,10 +4,12 @@
 	  
 		<mat-card-header>		
 			<img class="avatar" src="assets/roles.jpg" alt="...">
-			<strong> Administración </strong>		
+			<strong> CRUD Productos </strong>		
 		</mat-card-header>	
 		<mat-card-header>	
-			<button mat-raised-button color="primary" (click)="agregar()">Agregar</button>
+      <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modalFormDataAdd">
+        Agregar
+      </button>
 		</mat-card-header >		
 	
 		<mat-divider></mat-divider>	
@@ -43,4 +45,104 @@
         </table>
        
       </mat-card>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="modalFormDataAdd" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <form class="modal-dialog modal-lg" [formGroup]="formData" (ngSubmit)="agregar()">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Formulario Producto</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <div class="row">
+          <div class="col-lg-6">
+              <div class="row el-element-overlay"  style="margin-bottom: 0px !important;">
+                  <div class="col-md-2">
+                  </div>
+                  <div class="col-md-8">
+                    <div class="text-center">
+                      <img style="width: auto; height: 250px;" *ngIf="!file" src="https://upload.wikimedia.org/wikipedia/commons/4/4a/Usac_logo.png" class="rounded" alt="Producto">
+                      <img style="width: auto; height: 250px;" *ngIf="file" src="{{strImage}}" class="rounded" alt="Producto">
+                    </div>
+                  </div>
+                  <div class="col-md-2">
+                  </div>
+              </div>
+              <div class="form-group">
+                  <label>Seleccionar Imagen</label>
+                  <input (change)="seleccionImage($event?.target?.files[0])" type="file" class="form-control" id="exampleInputFile" aria-describedby="fileHelp" >
+              </div>
+          </div>
+          <div class="col-lg-6">
+              <div class="form-group">
+                  <label for="recipient-name" class="control-label">Nombre</label>
+                  <input type="text" class="form-control" id="recipient-name" formControlName="nombre" name="nombre">
+                  <div *ngIf="nombre && nombre?.invalid && (nombre?.dirty || nombre?.touched)">
+                      <div class="alert alert-danger" role="alert" *ngIf="nombre && nombre?.errors?.required">
+                        El nombre es requerido
+                      </div>
+                      <div class="alert alert-warning" role="alert" *ngIf="nombre && nombre?.errors?.maxlength">
+                        La longitud maxima es de 255 caracteres
+                      </div>
+                  </div>
+              </div>
+              <div class="form-group">
+                  <label for="message-text" class="control-label">Descripción</label>
+                  <textarea class="form-control" id="message-text" formControlName="descripcion" name="descripcion"></textarea>
+                  <div *ngIf="descripcion && descripcion?.invalid && (descripcion?.dirty || descripcion?.touched)">
+                      <div class="alert alert-danger" role="alert" *ngIf="descripcion && descripcion?.errors?.required">
+                        La descripción es requerida
+                      </div>
+                      <div class="alert alert-warning" role="alert" *ngIf="descripcion && descripcion?.errors?.maxlength">
+                        La longitud maxima es de 255 caracteres
+                      </div>
+                  </div>
+              </div>
+              <div class="form-group">
+                  <label for="recipient-name" class="control-label">Precio</label>
+                  <div class="input-group">
+                  <span class="input-group-text">Q</span>
+                  <input type="number" min="1" value="1" step="0.1" class="form-control" id="recipient-name" formControlName="precio" name="precio">
+                  </div>
+                  <div *ngIf="precio && precio?.invalid && (precio?.dirty || precio?.touched)">
+                      <div class="alert alert-danger" role="alert" *ngIf="precio && precio?.errors?.required">
+                        El precio es requerido
+                      </div>
+                  </div>
+              </div>
+              <div class="form-group">
+                <label for="recipient-name" class="control-label">Costo</label>
+                <div class="input-group">
+                <span class="input-group-text">Q</span>
+                <input type="number" min="1" value="1" step="0.1" class="form-control" id="recipient-name" formControlName="costo" name="costo">
+                </div>
+                <div *ngIf="costo && costo?.invalid && (costo?.dirty || costo?.touched)">
+                    <div class="alert alert-danger" role="alert" *ngIf="costo && costo?.errors?.required">
+                      El costo es requerido
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+              <label for="recipient-name" class="control-label">Cantidad</label>
+              <div class="input-group">
+              <input type="number" min="1" value="1" step="0.1" class="form-control" id="recipient-name" formControlName="cantidad" name="cantidad">
+              </div>
+              <div *ngIf="cantidad && cantidad?.invalid && (cantidad?.dirty || cantidad?.touched)">
+                  <div class="alert alert-danger" role="alert" *ngIf="cantidad && cantidad?.errors?.required">
+                    El cantidad es requerido
+                  </div>
+              </div>
+          </div>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary text-uppercase btn-rounded" data-dismiss="modal">Cerrar</button>
+        <button type="button" class="btn btn-primary text-uppercase btn-rounded" (click)="uploadImage()">Subir Imagen</button>
+        <button type="submit" class="btn btn-success  text-uppercase btn-rounded">Guardar Cambios</button>
+    </div>
+    </div>
+  </form>
 </div>
