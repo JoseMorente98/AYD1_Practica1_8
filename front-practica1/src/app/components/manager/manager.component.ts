@@ -78,7 +78,7 @@ export class ManagerComponent implements OnInit {
 					type: "success",
 					icon: "success",
 				});
-
+				this.getProducts();
 			}, (error) => {
 				swal({
 					title: "Error",
