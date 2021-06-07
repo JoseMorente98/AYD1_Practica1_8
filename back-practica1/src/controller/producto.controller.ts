@@ -11,6 +11,24 @@ export default class ProductoController {
         return this._instance || (this._instance = new this());
     }
 
+    getAll = (req: Request, res: Response) => {
+        const query = `
+            SELECT * FROM Producto;
+        `;
+
+        MySQL.getQuery(query, (err: any, data: Object[]) => {
+            if (err) {
+                res.status(400).json({
+                    ok: false,
+                    status: 400,
+                    error: err
+                });
+            } else {
+                res.json(data);
+            }
+        })
+    }
+    
     create = (req: Request, res: Response) => {
         let body = {
             nombre: req.body.nombre,
@@ -44,23 +62,7 @@ export default class ProductoController {
             })
     }
 
-    getAll = (req: Request, res: Response) => {
-        const query = `
-            SELECT * FROM Producto;
-        `;
-
-        MySQL.getQuery(query, (err: any, data: Object[]) => {
-            if (err) {
-                res.status(400).json({
-                    ok: false,
-                    status: 400,
-                    error: err
-                });
-            } else {
-                res.json(data);
-            }
-        })
-    }
+    
 
 	delete = (req: Request, res: Response) => {
         const id = req.params.id;
@@ -84,24 +86,7 @@ export default class ProductoController {
         })
     }
 	
-	search = (req: Request, res: Response) => {
-		
-		const nombre = req.params.nombre;
-		const query = `SELECT * FROM Producto WHERE nombre = ?`;
-
-		MySQL.sendQuery(query, [nombre], (err: any, data: Object[]) => {
-            if (err) {
-                res.status(400).json({
-                    ok: false,
-                    status: 400,
-                    error: err
-                });
-            } else {
-                res.json(data);
-            }
-        })	
-		
-	}
+	
 
     update = (req: Request, res:Response) => {
         let body = {
@@ -141,4 +126,23 @@ export default class ProductoController {
             }
         )
     }
+
+    search = (req: Request, res: Response) => {
+		
+		const nombre = req.params.nombre;
+		const query = `SELECT * FROM Producto WHERE nombre = ?`;
+
+		MySQL.sendQuery(query, [nombre], (err: any, data: Object[]) => {
+            if (err) {
+                res.status(400).json({
+                    ok: false,
+                    status: 400,
+                    error: err
+                });
+            } else {
+                res.json(data);
+            }
+        })	
+		
+	}
 }
