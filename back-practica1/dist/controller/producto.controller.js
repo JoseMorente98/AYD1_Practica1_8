@@ -82,6 +82,41 @@ var ProductoController = /** @class */ (function () {
                 }
             });
         };
+        this.update = function (req, res) {
+            var body = {
+                nombre: req.body.nombre,
+                descripcion: req.body.descripcion,
+                precio: req.body.precio,
+                costo: req.body.costo,
+                cantidad: req.body.cantidad,
+                imagen: req.body.imagen,
+                id: req.body.id
+            };
+            
+            var query = `UPDATE Producto 
+                         SET nombre = ?, 
+                             descripcion = ?, 
+                             precio = ?, 
+                             costo = ?, 
+                             cantidad = ?, 
+                             imagen = ?
+                         WHERE id = ?`;
+            mysql_1.default.sendQuery(query, [body.nombre, body.descripcion, body.precio, body.costo, body.cantidad, body.imagen, body.id], function (err, data) {
+                if (err) {
+                    res.status(400).json({
+                        ok: false,
+                        status: 400,
+                        error: err
+                    });
+                }
+                else {
+                    res.json({
+                        ok: true,
+                        status: 200
+                    });
+                }
+            });
+        };
     }
     ProductoController.getInstance = function () {
         return this._instance || (this._instance = new this());
