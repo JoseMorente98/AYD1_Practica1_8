@@ -57,7 +57,7 @@ export default class ProductoController {
                     error: err
                 });
             } else {
-                res.json()
+                res.json(data);
             }
         })
     }
