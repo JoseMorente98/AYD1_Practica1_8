@@ -47,6 +47,7 @@ export class ProductosService {
       catchError(this.handleError)
     )
   }
+   
   //DELETE
   public delete(id: number): Observable<any>{
     let url = `${this.basePath}producto/${id}`;
@@ -55,4 +56,15 @@ export class ProductosService {
       catchError(this.handleError)
     )
   }
+  
+	// Search 
+	public search(nombre: string): Observable<any> {
+	  
+		let url = `${this.basePath}search/producto/${nombre}`;
+		return this.http.get(url, this.httpOptions)
+		.pipe(
+		  catchError(this.handleError)
+		)
+	  
+	}
 }

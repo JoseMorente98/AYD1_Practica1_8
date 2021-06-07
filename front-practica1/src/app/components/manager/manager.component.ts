@@ -47,6 +47,8 @@ export class ManagerComponent implements OnInit {
 	// Aqui van los datos de la tabla basicamente solo hay que igualar esto al json que devulve la peticion y ya quedaria
 	// datos = [{id:1}, {id:2}, {id:3}] este seria el formato
 	datos = [];
+	
+	nombreBuscar = "";
 
 	@ViewChild(MatTable) tabla1: MatTable<any>;
 
@@ -101,7 +103,22 @@ export class ManagerComponent implements OnInit {
 
 	}
 
-
+	buscar(): void {
+		
+		this.productoService.search(this.nombreBuscar).subscribe((res: any) => {
+			this.datos = res;
+		}, (error) => {
+			console.log("Ha ocurrido un error.")
+		});
+		
+	}
+	
+	clearbusqueda(): void {
+		
+		this.nombreBuscar = "";
+		this.getProducts();
+		
+	}
 
 	showSwall(titulo: string, texto: string, tipo: string, icon: string): void {
 		swal({
