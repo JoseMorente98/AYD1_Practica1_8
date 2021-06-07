@@ -15,8 +15,27 @@ var ProductoController = /** @class */ (function () {
                 cantidad: req.body.cantidad,
                 imagen: req.body.imagen,
             };
-            var query = "\n            INSERT INTO Producto(nombre, descripcion, precio, costo, cantidad, imagen)\n            VALUES (?, ?, ?, ?, ?, ?)\n        ";
+            var query = "\n            INSERT INTO Producto(nombre, descripcion, precio, costo, cantidad, imagen)\n            VALUES (?, ?, ?, ?, ?, ?);\n        ";
             mysql_1.default.sendQuery(query, [body.nombre, body.descripcion, body.precio, body.costo, body.cantidad, body.imagen], function (err, data) {
+                if (err) {
+                    res.status(400).json({
+                        ok: false,
+                        status: 400,
+                        error: err
+                    });
+                }
+                else {
+                    res.json({
+                        ok: true,
+                        status: 200
+                    });
+                }
+            });
+        };
+        this.delete = function (req, res) {
+            var id = req.params.id;
+            var query = "DELETE FROM Producto WHERE id = ?";
+            mysql_1.default.sendQuery(query, [id], function (err, data) {
                 if (err) {
                     res.status(400).json({
                         ok: false,

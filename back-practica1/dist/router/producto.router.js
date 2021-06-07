@@ -7,4 +7,5 @@ var express_1 = require("express");
 var producto_controller_1 = __importDefault(require("./../controller/producto.controller"));
 var producto = express_1.Router();
 producto.post('/producto', producto_controller_1.default.getInstance().create);
+producto.delete('/producto/:id', producto_controller_1.default.getInstance().delete);
 exports.default = producto;
