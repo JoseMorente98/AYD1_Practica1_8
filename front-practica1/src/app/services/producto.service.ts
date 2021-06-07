@@ -47,4 +47,12 @@ export class ProductosService {
       catchError(this.handleError)
     )
   }
+  //DELETE
+  public delete(id: number): Observable<any>{
+    let url = `${this.basePath}producto/${id}`;
+    return this.http.delete(url, this.httpOptions)
+    .pipe(
+      catchError(this.handleError)
+    )
+  }
 }

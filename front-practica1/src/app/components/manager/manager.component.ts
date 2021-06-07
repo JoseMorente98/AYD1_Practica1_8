@@ -56,7 +56,6 @@ export class ManagerComponent implements OnInit {
 
 	getProducts() {
 		this.productoService.read().subscribe((res: any) => {
-			console.log(res);
 			this.datos = res;
 		}, (error) => {
 			console.log("Ha ocurrido un error.")
@@ -70,22 +69,12 @@ export class ManagerComponent implements OnInit {
 		console.log(this.formData.value)
 		this.productoService.create(this.formData.value)
 			.subscribe((res) => {
-				console.log(res)
 				$('#modalFormDataAdd').modal('hide');
-				swal({
-					title: "Producto Agregado",
-					text: "El producto se ha agregado exitosamente.",
-					type: "success",
-					icon: "success",
-				});
+				
+				this.showSwall("Producto Agregado", "El producto se ha agregado exitosamente.", "success","success");
 				this.getProducts();
 			}, (error) => {
-				swal({
-					title: "Error",
-					text: "Ha ocurrido un error. Intentélo más tarde.",
-					type: "error",
-					icon: "error",
-				});
+				this.showSwall("Error","Ha ocurrido un error. Intentélo más tarde.","error","error");
 			});
 	}
 
@@ -100,8 +89,27 @@ export class ManagerComponent implements OnInit {
 	// basicamente seria el mismo	
 	eliminar(Id: number): void {
 
+		this.productoService.delete(Id).subscribe(
+			() => {
+				this.showSwall("Producto Eliminado", "El producto se elimino correctamente", "success", "success");
+				this.getProducts();
+			},
+			(err) => {
+				this.showSwall("Error","Ha ocurrido un error. Intentélo más tarde.","error","error");
+			}
+		);
+
+	}
 
 
+
+	showSwall(titulo: string, texto: string, tipo: string, icon: string): void {
+		swal({
+			title: titulo,
+			text: texto,
+			type: tipo,
+			icon: icon,
+		});
 	}
 
 	/**
