@@ -102,4 +102,43 @@ export default class ProductoController {
         })	
 		
 	}
+
+    update = (req: Request, res:Response) => {
+        let body = {
+            nombre: req.body.nombre,
+            descripcion: req.body.descripcion,
+            precio: req.body.precio,
+            costo: req.body.costo,
+            cantidad: req.body.cantidad,
+            imagen: req.body.imagen,
+            id: req.body.id
+        };
+        
+        let query = `UPDATE Producto 
+                     SET nombre = ?, 
+                         descripcion = ?, 
+                         precio = ?, 
+                         costo = ?, 
+                         cantidad = ?, 
+                         imagen = ?
+                     WHERE id = ?`;
+        MySQL.sendQuery(query, 
+            [body.nombre, body.descripcion, body.precio, body.costo, body.cantidad, body.imagen, body.id], 
+            ( err: any, data: Object[]) => {
+                if (err) {
+                    res.status(400).json({
+                        ok: false,
+                        status: 400,
+                        error: err
+                    });
+                }
+                else {
+                    res.json({
+                        ok: true,
+                        status: 200
+                    });
+                }
+            }
+        )
+    }
 }
