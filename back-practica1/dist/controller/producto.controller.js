@@ -15,7 +15,7 @@ var ProductoController = /** @class */ (function () {
                 cantidad: req.body.cantidad,
                 imagen: req.body.imagen,
             };
-            var query = "\n            INSERT INTO Producto(nombre, descripcion, precio, costo, cantidad, imagen)\n            VALUES (?, ?, ?, ?, ?, ?)\n        ";
+            var query = "\n            INSERT INTO Producto(nombre, descripcion, precio, costo, cantidad, imagen)\n            VALUES (?, ?, ?, ?, ?, ?);\n        ";
             mysql_1.default.sendQuery(query, [body.nombre, body.descripcion, body.precio, body.costo, body.cantidad, body.imagen], function (err, data) {
                 if (err) {
                     res.status(400).json({
@@ -29,6 +29,21 @@ var ProductoController = /** @class */ (function () {
                         ok: true,
                         status: 200
                     });
+                }
+            });
+        };
+        this.getAll = function (req, res) {
+            var query = "\n            SELECT * FROM Producto;\n        ";
+            mysql_1.default.getQuery(query, function (err, data) {
+                if (err) {
+                    res.status(400).json({
+                        ok: false,
+                        status: 400,
+                        error: err
+                    });
+                }
+                else {
+                    res.json();
                 }
             });
         };

@@ -8,7 +8,7 @@ export default class ProductoController {
     }
 
     public static getInstance() {
-        return this._instance || ( this._instance = new this() );
+        return this._instance || (this._instance = new this());
     }
 
     create = (req: Request, res: Response) => {
@@ -20,26 +20,44 @@ export default class ProductoController {
             cantidad: req.body.cantidad,
             imagen: req.body.imagen,
         }
-        
+
         const query = `
             INSERT INTO Producto(nombre, descripcion, precio, costo, cantidad, imagen)
             VALUES (?, ?, ?, ?, ?, ?);
         `;
-        
-        MySQL.sendQuery(query, 
-            [body.nombre, body.descripcion, body.precio, body.costo, body.cantidad, body.imagen], 
-            (err:any, data:Object[]) => {
-            if(err) {
+
+        MySQL.sendQuery(query,
+            [body.nombre, body.descripcion, body.precio, body.costo, body.cantidad, body.imagen],
+            (err: any, data: Object[]) => {
+                if (err) {
+                    res.status(400).json({
+                        ok: false,
+                        status: 400,
+                        error: err
+                    });
+                } else {
+                    res.json({
+                        ok: true,
+                        status: 200
+                    })
+                }
+            })
+    }
+
+    getAll = (req: Request, res: Response) => {
+        const query = `
+            SELECT * FROM Producto;
+        `;
+
+        MySQL.getQuery(query, (err: any, data: Object[]) => {
+            if (err) {
                 res.status(400).json({
                     ok: false,
                     status: 400,
                     error: err
                 });
             } else {
-                res.json({
-                    ok: true,
-                    status: 200
-                })
+                res.json()
             }
         })
     }
