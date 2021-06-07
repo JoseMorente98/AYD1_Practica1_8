@@ -65,8 +65,8 @@ export default class ProductoController {
     
 
 	delete = (req: Request, res: Response) => {
-        const id = req.params.id;
-        const query = `DELETE FROM Producto WHERE id = ?`;
+        var id = req.params.id;
+        var query = `DELETE FROM Producto WHERE id = ?`;
         
         MySQL.sendQuery(query, 
             [id], 
