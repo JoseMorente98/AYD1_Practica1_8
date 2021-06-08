@@ -82,9 +82,28 @@ export class ManagerComponent implements OnInit {
 
 	// Método Modificar Este Id es basicamente la posicion que tiene en la tabla de la vista pero si empezamos el id de la base desde 1 
 	// basicamente seria el mismo
-	modificar(Id: number): void {
+	modificar(): void {
+		console.log(this.formData.value)
+		this.productoService.update(this.formData.value)
+			.subscribe((res) => {
+				$('#modalFormDataUpdate').modal('hide');
+				
+				this.showSwall("Producto actualizado", "El producto se ha actualizado exitosamente.", "success","success");
+				this.getProducts();
+			}, (error) => {
+				this.showSwall("Error","Ha ocurrido un error. Intentélo más tarde.","error","error");
+			});
+	}
 
-
+	update(item: any){
+		this.id.setValue(item.id)
+		this.nombre.setValue(item.nombre)
+		this.descripcion.setValue(item.descripcion)
+		this.precio.setValue(item.precio)
+		this.costo.setValue(item.costo)
+		this.cantidad.setValue(item.cantidad)
+		this.imagen.setValue(item.imagen)
+		this.strImage = item.imagen
 	}
 
 	// Método Eliminar Este Id es basicamente la posicion que tiene en la tabla de la vista pero si empezamos el id de la base desde 1 

@@ -56,6 +56,15 @@ export class ProductosService {
       catchError(this.handleError)
     )
   }
+
+  //UPDATE
+  public update(data:any) : Observable<any> {
+    let url = `${this.basePath}producto`;
+    return this.http.put(url, data, this.httpOptions)
+    .pipe(
+      catchError(this.handleError)
+    )
+  }  
   
 	// Search 
 	public search(nombre: string): Observable<any> {
