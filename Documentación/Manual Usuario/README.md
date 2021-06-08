@@ -46,6 +46,10 @@ Se muestran los productos con sus respectivas características, mostranto en min
 
 ### **Eliminar**<a name="eliminar"></a>
 ![CRUD 4](https://res.cloudinary.com/dtpqmjmhk/image/upload/v1623123375/AYDS1/Practica%201/F4_vzohow.png)
+El usuario final es capaz de eliminar cualquier producto que haya creado con anterioridad, para ello, basta con presionar el boton que tiene el icono de un
+cesto de basura y el producto se intentara eliminar automaticamente, mostrando un mensaje de exito y quitando el producto si el proceso fue exitoso o bien 
+mostrando una alerta de fallo en caso de no serlo. 
+
 
 ### **Buscar**<a name="buscar"></a>
 ![CRUD 5](https://res.cloudinary.com/dtpqmjmhk/image/upload/v1623123374/AYDS1/Practica%201/F5_xj9gc2.png)

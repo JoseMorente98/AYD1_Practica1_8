@@ -270,32 +270,64 @@ getProducts() {
 	}
 ```
 
-### **Método Eliminar**<a name="Metodoeliminar"></a>
 
-### **Método Buscar**<a name="Metodobuscar"></a>
-Se realiza la peticion get al servidor para obtener los datos de la búsqueda luego rellena la variable datos que es la que 
-contiene todos los datos que se visualizan en la tabla 	
-	
-		buscar(): void {
+### **API Eliminar**<a name="APIeliminar"></a>
+Esta funcion se encarga de eliminar un elemento de la base de datos, en el cuerpo del
+request de la peticion HTTP recibe como parametro el Id del elemento a eliminar, ese elemento se almacena
+en una variable llamada id, dicha variable se envia junto a la consulta para eliminar y en caso de tener todo 
+correcto retorna un status de exito, de lo contrario retorna un error.
+
+``` typescript
+delete = (req: Request, res: Response) => {
+    const id = req.params.id;
+    const query = `DELETE FROM Producto WHERE id = ?`;
+    
+    MySQL.sendQuery(query, 
+        [id], 
+        (err:any, data:Object[]) => {
+        if(err) {
+            res.status(400).json({
+                ok: false,
+                status: 400,
+                error: err
+            });
+        } else {
+            res.json({
+                ok: true,
+                status: 200
+            })
+        }
+    })
+}
+```
+
+
+### **API Buscar**<a name="APIbuscar"></a>
+
+Se realiza un petición de tipo get la cual se realiza en base al query "select * from producto where = Z" donde Z es el nombre 
+del producto que se desea buscar de ser exitosa la búsqueda se retorna la respuesta en forma de json al cliente, en caso contrario 
+de ser fallida se retorna un mensaje de errro con codigo 400.
+
+``` typescript
+search = (req: Request, res: Response) => {
 			
-			this.productoService.search(this.nombreBuscar).subscribe((res: any) => {
-				this.datos = res;
-			}, (error) => {
-				console.log("Ha ocurrido un error.")
-			});
-			
-		}
-	
-Se vacia la variable nombreBuscar que representa el ngModel del input en el cual se coloca el nombre buscar, además, de solicitar 
-todos los productos existentes en el sistema para visualizarlos en la tabla.
-	
-	clearbusqueda(): void {
-		
-		this.nombreBuscar = "";
-		this.getProducts();
-		
-	}
-	
+    const nombre = req.params.nombre;
+    const query = `SELECT * FROM Producto WHERE nombre = ?`;
+
+    MySQL.sendQuery(query, [nombre], (err: any, data: Object[]) => {
+        if (err) {
+            res.status(400).json({
+                ok: false,
+                status: 400,
+                error: err
+            });
+        } else {
+            res.json(data);
+        }
+    })	
+    
+}
+```	
 
 ### **Comandos Git Flow**<a name="gitflow"></a>
 Los comandos de git flow utilizados en la practica fueron los siguientes:
