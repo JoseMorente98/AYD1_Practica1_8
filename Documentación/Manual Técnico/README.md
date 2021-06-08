@@ -348,3 +348,8 @@ Comandos necesarios para hacer un release y merge a main:
 	git push origin release/1.1.0
 	git checkout main 
 	git push origin main	
+
+### **Flujo de trabajo Git Flow**<a name="gitflow"></a>
+![Flujo 1](https://res.cloudinary.com/dtpqmjmhk/image/upload/v1623127036/AYDS1/Practica%201/WhatsApp_Image_2021-06-07_at_10.33.26_PM_1_wkc1wt.jpg)
+![Flujo 2](https://res.cloudinary.com/dtpqmjmhk/image/upload/v1623127036/AYDS1/Practica%201/WhatsApp_Image_2021-06-07_at_10.33.26_PM_d2rp9w.jpg)
+
