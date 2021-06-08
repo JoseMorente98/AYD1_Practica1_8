@@ -38,6 +38,7 @@ Para la imagen se puede seleccionar la imagen. Y antes de guardar el formulario 
 
 ### **Actualizar**<a name="actualizar"></a>
 ![CRUD 2](https://res.cloudinary.com/dtpqmjmhk/image/upload/v1623123376/AYDS1/Practica%201/F3_w4haeb.png)
+Se muestra un formulario en el que se cargan los datos del producto a actualizar y su opción a cambio.
 
 ### **Obtener**<a name="obtener"></a>
 ![CRUD 3](https://res.cloudinary.com/dtpqmjmhk/image/upload/v1623123376/AYDS1/Practica%201/F6_ni4f3g.png)
