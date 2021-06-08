@@ -4,7 +4,6 @@
 - [Integrantes](#integrantes)
 - [Arquitectura](#arquitectura)
 - [Requerimientos mínimos](#requerimientos)
-- [Comandos Git Flow](#comandos)
 - [MySQL](#mysql)
 - [Node JS](#nodejs)
    - [API Agregar](#APIagregar)
@@ -49,7 +48,10 @@ CREATE TABLE Producto(
 
 ## **Requerimientos mínimos**<a name="requerimientos"></a>
 
-## **Comandos Git Flow**<a name="comandos"></a>
+- Angular CLI: 12.0.3
+- Node: 14.15.5
+- Package Manager: npm 6.14.11
+- OS: win32 x64
 
 ## **Node JS**<a name="nodejs"></a>
 ### **API Agregar**<a name="APIagregar"></a>
