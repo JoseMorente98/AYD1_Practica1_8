@@ -41,6 +41,7 @@ Para la imagen se puede seleccionar la imagen. Y antes de guardar el formulario 
 
 ### **Obtener**<a name="obtener"></a>
 ![CRUD 3](https://res.cloudinary.com/dtpqmjmhk/image/upload/v1623123376/AYDS1/Practica%201/F6_ni4f3g.png)
+Se muestran los productos con sus respectivas características, mostranto en miniatura la imagen de cada uno, así como el precio y la cantida disponible.
 
 ### **Eliminar**<a name="eliminar"></a>
 ![CRUD 4](https://res.cloudinary.com/dtpqmjmhk/image/upload/v1623123375/AYDS1/Practica%201/F4_vzohow.png)

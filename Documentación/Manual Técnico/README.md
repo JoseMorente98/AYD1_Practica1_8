@@ -93,6 +93,29 @@ create = (req: Request, res: Response) => {
 ### **API Actualizar**<a name="APIactualizar"></a>
 
 ### **API Obtener**<a name="APIobtener"></a>
+Se obitene el request de la petición HTTP, en este método no se esperan datos.
+Se realiza la consulta a la base de datos que obtendrá todos los datos de la tabla Producto.
+Devolverá la tupla de datos si es correcta la consulta, en caso de error devolverá el código 400.
+
+``` typescript
+getAll = (req: Request, res: Response) => {
+        const query = `
+            SELECT * FROM Producto;
+        `;
+
+        MySQL.getQuery(query, (err: any, data: Object[]) => {
+            if (err) {
+                res.status(400).json({
+                    ok: false,
+                    status: 400,
+                    error: err
+                });
+            } else {
+                res.json(data);
+            }
+        })
+    }
+```
 
 ### **API Eliminar**<a name="APIeliminar"></a>
 
@@ -140,6 +163,17 @@ agregar(): void {
 ### **Método Actualizar**<a name="Metodoactualizar"></a>
 
 ### **Método Obtener**<a name="Metodoobtener"></a>
+Se obtienen datos de la API mediante el servicio de angular, el cual envia un GET, por HTTP.
+Se obitene un JSON con todos los datos de todos los productos y en HTML se odenan en una tabla.
+``` typescript
+getProducts() {
+		this.productoService.read().subscribe((res: any) => {
+			this.datos = res;
+		}, (error) => {
+			console.log("Ha ocurrido un error.")
+		});
+	}
+```
 
 ### **Método Eliminar**<a name="Metodoeliminar"></a>
 
