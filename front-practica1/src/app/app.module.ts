@@ -20,6 +20,9 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FooterComponent } from './components/footer/footer.component';
 import { SplashScreenComponent } from './components/splash-screen/splash-screen.component';
 import { ManagerComponent } from './components/manager/manager.component';
+import { HttpClientModule } from '@angular/common/http';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { CommonModule } from '@angular/common';
 
 @NgModule({
   declarations: [
@@ -31,19 +34,23 @@ import { ManagerComponent } from './components/manager/manager.component';
     ManagerComponent
   ],
   imports: [
+    CommonModule,
+    FormsModule,
+    ReactiveFormsModule,
     BrowserModule,
-	MatInputModule,
-	MatToolbarModule,
-	MatIconModule,
+    MatInputModule,
+    MatToolbarModule,
+    MatIconModule,
     AppRoutingModule,
-	MatGridListModule,
-	MatCardModule,
-	MatButtonModule,
-	MatSelectModule,
-	MatDividerModule,
-	MatTableModule,
-	MatMenuModule,
-    BrowserAnimationsModule
+    MatGridListModule,
+    MatCardModule,
+    MatButtonModule,
+    MatSelectModule,
+    MatDividerModule,
+    MatTableModule,
+    MatMenuModule,
+    BrowserAnimationsModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]
