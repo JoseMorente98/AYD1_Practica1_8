@@ -92,6 +92,78 @@ create = (req: Request, res: Response) => {
 ```
 
 ### **API Actualizar**<a name="APIactualizar"></a>
+La función update es una parte importante de un CRUD ya que conlleva la gestión de la información de los productos para que se puedan actualizar y mantener al día sin necesidad de crear nuevos productos.
+
+## Backend
+En este método se utiliza la función PUT de la API para consultar a MySQL y colocar la nueva información mediante un arreglo con los parámetros ordenados y el objeto mysql.
+```Javascript
+update = (req: Request, res:Response) => {
+    let body = {
+        nombre: req.body.nombre,
+        descripcion: req.body.descripcion,
+        precio: req.body.precio,
+        costo: req.body.costo,
+        cantidad: req.body.cantidad,
+        imagen: req.body.imagen,
+        id: req.body.id
+    };
+    
+    let query = `UPDATE Producto 
+                    SET nombre = ?, 
+                        descripcion = ?, 
+                        precio = ?, 
+                        costo = ?, 
+                        cantidad = ?, 
+                        imagen = ?
+                    WHERE id = ?`;
+    MySQL.sendQuery(query, 
+        [body.nombre, body.descripcion, body.precio, body.costo, body.cantidad, body.imagen, body.id], 
+        ( err: any, data: Object[]) => {
+            if (err) {
+                res.status(400).json({
+                    ok: false,
+                    status: 400,
+                    error: err
+                });
+            }
+            else {
+                res.json({
+                    ok: true,
+                    status: 200
+                });
+            }
+        }
+    )
+}
+```
+
+## Frontend
+Aquí se utiliza una función que pueda actualizar los datos pertenecientes a la clase y a su vez existe un trigger en el que se abre un modal con el formulario.
+```Javascript
+modificar(): void {
+    console.log(this.formData.value)
+    this.productoService.update(this.formData.value)
+        .subscribe((res) => {
+            $('#modalFormDataUpdate').modal('hide');
+            
+            this.showSwall("Producto actualizado", "El producto se ha actualizado exitosamente.", "success","success");
+            this.getProducts();
+        }, (error) => {
+            this.showSwall("Error","Ha ocurrido un error. Intentélo más tarde.","error","error");
+        });
+}
+
+update(item: any){
+    this.id.setValue(item.id)
+    this.nombre.setValue(item.nombre)
+    this.descripcion.setValue(item.descripcion)
+    this.precio.setValue(item.precio)
+    this.costo.setValue(item.costo)
+    this.cantidad.setValue(item.cantidad)
+    this.imagen.setValue(item.imagen)
+    this.strImage = item.imagen
+}
+```
 
 ### **API Obtener**<a name="APIobtener"></a>
 Se obitene el request de la petición HTTP, en este método no se esperan datos.
