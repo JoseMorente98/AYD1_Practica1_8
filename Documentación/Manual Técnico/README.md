@@ -18,6 +18,7 @@
    - [Método Obtener](#Metodoobtener)
    - [Método Eliminar](#Metodoeliminar)
    - [Método Buscar](#Metodobuscar)
+- [GitFlow](#gitflow)
 
 ## **Integrantes**<a name="integrantes"></a>
 - **201801195**	JOSE CARLOS JIMENEZ
@@ -120,6 +121,28 @@ getAll = (req: Request, res: Response) => {
 ### **API Eliminar**<a name="APIeliminar"></a>
 
 ### **API Buscar**<a name="APIbuscar"></a>
+Se realiza un petición de tipo get la cual se realiza en base al query "select * from producto where = Z" donde Z es el nombre 
+del producto que se desea buscar de ser exitosa la búsqueda se retorna la respuesta en forma de json al cliente, en caso contrario 
+de ser fallida se retorna un mensaje de errro con codigo 400.
+	
+		search = (req: Request, res: Response) => {
+			
+			const nombre = req.params.nombre;
+			const query = `SELECT * FROM Producto WHERE nombre = ?`;
+
+			MySQL.sendQuery(query, [nombre], (err: any, data: Object[]) => {
+				if (err) {
+					res.status(400).json({
+						ok: false,
+						status: 400,
+						error: err
+					});
+				} else {
+					res.json(data);
+				}
+			})	
+			
+		}
 
 ## **Angular**<a name="angular"></a>
 ### **Método Agregar**<a name="Metodoagregar"></a>
@@ -178,3 +201,46 @@ getProducts() {
 ### **Método Eliminar**<a name="Metodoeliminar"></a>
 
 ### **Método Buscar**<a name="Metodobuscar"></a>
+Se realiza la peticion get al servidor para obtener los datos de la búsqueda luego rellena la variable datos que es la que 
+contiene todos los datos que se visualizan en la tabla 	
+	
+		buscar(): void {
+			
+			this.productoService.search(this.nombreBuscar).subscribe((res: any) => {
+				this.datos = res;
+			}, (error) => {
+				console.log("Ha ocurrido un error.")
+			});
+			
+		}
+	
+Se vacia la variable nombreBuscar que representa el ngModel del input en el cual se coloca el nombre buscar, además, de solicitar 
+todos los productos existentes en el sistema para visualizarlos en la tabla.
+	
+	clearbusqueda(): void {
+		
+		this.nombreBuscar = "";
+		this.getProducts();
+		
+	}
+	
+
+### **Comandos Git Flow**<a name="gitflow"></a>
+Los comandos de git flow utilizados en la practica fueron los siguientes:
+	
+git flow init - Este comando inicializa un flujo de trabajo git flow en nuestro repositorio 
+	
+Comandos necesarios para un merge a develop:
+	
+	git checkout develop
+	git flow feature finish --keep <name>
+	git push origin develop 
+		
+Comandos necesarios para hacer un release y merge a main:
+	
+	git checkout develop 
+	git flow release start 1.1.0
+	git flow release finish --keep 1.1.0
+	git push origin release/1.1.0
+	git checkout main 
+	git push origin main	

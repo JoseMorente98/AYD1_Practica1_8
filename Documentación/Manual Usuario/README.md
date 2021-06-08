@@ -48,5 +48,7 @@ Se muestran los productos con sus respectivas características, mostranto en min
 
 ### **Buscar**<a name="buscar"></a>
 ![CRUD 5](https://res.cloudinary.com/dtpqmjmhk/image/upload/v1623123374/AYDS1/Practica%201/F5_xj9gc2.png)
-
-
+El usuario final puede ser capaz de buscar cualquier producto que se encuentre alojado en la base de datos en base a su nombre, 
+el diseño es intiutivo contando con un input y dos botones, el input permite ingresar el nombre del producto a buscar y al presionar
+el botón buscar realizara la busqueda mostrando los resultados en la tabla, además, luego de un búsqueda para regresar al estado 
+original y visualizar todos los productos se puede utilizar el botón clear que regresa la tabla a su estado original.
