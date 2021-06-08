@@ -1,5 +1,14 @@
 <app-splash-screen [duration]="3" [animationDuration]="2"></app-splash-screen>
 
-<app-nav-bar></app-nav-bar>
-<router-outlet></router-outlet>
-<app-footer></app-footer>
+<div class="page home-page">
+    <!-- Main Navbar-->
+    <header class="header">
+        <app-nav-bar></app-nav-bar>
+    </header>
+    <div class="page-content d-flex align-items-stretch">
+      <div class="content-inner">
+        <router-outlet></router-outlet>
+        <app-footer></app-footer>
+      </div>
+    </div>
+  </div>
