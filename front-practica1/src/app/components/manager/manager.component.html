@@ -1,56 +1,68 @@
-<div class="container">
-  <div class="row">
-    <hr>
-    <h1>
-      <strong> Productos</strong>
-    </h1>
+
+
+
+
+<header class="page-header">
+  <div class="container-fluid">
+    <h2 class="no-margin-bottom">Productos</h2>
   </div>
-  <hr>
-	<div class="container">
-	  <div class="row">
-		<div class="col-md-2">
-		  <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modalFormDataAdd">
-			Agregar
-		  </button>
-		</div>
-	  </div>
-	</div>
-	<hr>
-	<div class="input-group">
-	  <input type="text" class="form-control" placeholder="Nombre Del Producto" [(ngModel)]="nombreBuscar" aria-label="Nombre Del Producto" aria-describedby="basic-addon2">
-	  <div class="input-group-append">
-		<button class="btn btn-outline-secondary" type="button" (click)="buscar()">Buscar</button>
-		<button class="btn btn-outline-secondary" type="button" (click)="clearbusqueda()">Clear</button>
-	  </div>
-	</div>
-	
-  <table class="table">
-    <thead>
-      <tr>
-        <th scope="col">Imagen</th>
-        <th scope="col">Nombre</th>
-        <th scope="col">Descripción</th>
-        <th scope="col">Precio</th>
-        <th scope="col">Costo</th>
-        <th scope="col">Cantidad</th>
-        <th scope="col">Opciones</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr *ngFor="let item of datos">
-        <td><img style="height: 40px;" src="{{item.imagen}}" class="img-fluid" alt="..."></td>
-        <td>{{item.nombre}}</td>
-        <td>{{item.descripcion}}</td>
-        <td>${{item.precio}}</td>
-        <td>${{item.costo}}</td>
-        <td>{{item.cantidad}}</td>
-        <td><div class="btn-group" role="group" aria-label="Basic outlined example">
-          <button type="button" data-bs-toggle="modal" data-bs-target="#modalFormDataUpdate" (click)="update(item)" class="btn btn-outline-success">Editar</button>
-          <button type="button" (click)="eliminar(item.id)" class="btn btn-outline-danger">Eliminar</button>
-        </div></td>
-      </tr>
-    </tbody>
-  </table>
+</header>
+<div class="container">
+  <section class="tables">   
+    <div class="container-fluid">
+      <div class="col-lg-12">
+        <div class="card">
+          <div class="card-close">
+            <div class="input-group">
+              <input class="form-control" type="text" name="search"  autocomplete="off" placeholder="Nombre Del Producto" [(ngModel)]="nombreBuscar">
+              <span class="input-group-btn">
+                  <button type="button"  class="btn btn-warning" (click)="buscar()">Buscar </button>
+              </span>
+              <span class="input-group-btn">
+                <button type="button" data-toggle="modal" data-target="#modalFormDataAdd" class="btn btn-primary">Nuevo </button>
+            </span>
+          </div>
+          </div>
+          <br>
+          <div class="card-header d-flex align-items-center">
+            <h3 class="h4">Listado General</h3>
+          </div>
+          <div class="card-body">
+            <table class="table">
+              <thead>
+                <tr>
+                  <th>Foto</th>
+                  <th>Producto</th>
+                  <th>Descripcion</th>
+                  <th>P. Compra</th>
+                  <th>P. Venta</th>
+                  <th>Cant</th>
+                  <th>Opciones</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let item of datos">
+                  <td class="text-center"><img style="height: 40px;" src="{{item.imagen}}" class="img-fluid" alt="..."> </td>
+                  <td>{{item.nombre}}</td>
+                  <td>{{item.descripcion}}</td>
+                  <td>{{item.precio}}</td>
+                  <td>{{item.costo}}</td>
+                  <td>{{item.cantidad}}</td>
+                  <td>
+                    <div class="btn-group">
+                      <button type="button" class="btn btn-outline-primary"><i class="fa fa-pencil"></i></button>
+                      <button type="button" class="btn btn-outline-danger"><i class="fa fa-trash"></i></button>
+                    </div>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+      
+    </div>
+  </section>
 </div>
 
 <!-- Modal -->
