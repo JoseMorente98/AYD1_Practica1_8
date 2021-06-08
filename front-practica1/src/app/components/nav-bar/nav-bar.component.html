@@ -1,18 +1,19 @@
-<mat-toolbar class="bar">
-    <div class="left tittle">Grupo: Tytus DB</div>
-    <div class="center">
-      <img class="imagen" src="assets/logo3.png" alt="...">
-   </div>
-   <div class="right">
-     <button mat-icon-button aria-label="Example icon-button with menu icon" [matMenuTriggerFor]="menu">
-          <mat-icon>menu</mat-icon>
-     </button>	 
-   </div>
-</mat-toolbar >
-
-<mat-menu class="menu" #menu="matMenu" >
-  <button mat-menu-item [routerLink]="['/dashboard']"><mat-icon>home</mat-icon>Home</button>
-  <mat-divider></mat-divider>
-  <button mat-menu-item [routerLink]="['/manager']"><mat-icon>import_contacts</mat-icon>CRUD</button>
-</mat-menu>
-
+<header class="header">
+  <nav class="navbar">
+    <div class="container-fluid">
+      <div class="navbar-holder d-flex align-items-center justify-content-between">
+        <!-- Navbar Header-->
+        <div class="navbar-header">
+          <!-- Navbar Brand --><a href="index.html" class="navbar-brand">
+            <div class="brand-text brand-big hidden-lg-down"><span>Practica 1 </span></div></a>
+          
+        </div>
+        <!-- Navbar Menu -->
+        <ul class="nav-menu list-unstyled d-flex flex-md-row align-items-md-center">
+          <li class="nav-item d-flex align-items-center"><a href="login.html" [routerLink]="['/dashboard']" class="nav-link logout">Home</a></li>
+          <li class="nav-item d-flex align-items-center"><a href="login.html" [routerLink]="['/manager']" class="nav-link logout">Mis Productos</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+</header>

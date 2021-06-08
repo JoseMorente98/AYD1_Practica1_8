@@ -32,6 +32,7 @@ export class ManagerComponent implements OnInit {
 	 */
 	public strImage: any = "";
 	public file: File;
+	borrar:boolean = false;
 
 	constructor(
 		private productoService: ProductosService,
@@ -123,7 +124,7 @@ export class ManagerComponent implements OnInit {
 	}
 
 	buscar(): void {
-		
+		this.borrar = true;
 		this.productoService.search(this.nombreBuscar).subscribe((res: any) => {
 			this.datos = res;
 		}, (error) => {
@@ -136,7 +137,7 @@ export class ManagerComponent implements OnInit {
 		
 		this.nombreBuscar = "";
 		this.getProducts();
-		
+		this.borrar = false;
 	}
 
 	showSwall(titulo: string, texto: string, tipo: string, icon: string): void {
